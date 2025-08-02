@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breach Checker - Check if Your Email is Compromised</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Breach Checker</h1>
+            <p>Check if your email address has been compromised in known data breaches</p>
+        </header>
+
+        <main>
+            <form id="email-form" class="email-form">
+                <div class="input-group">
+                    <label for="email-input">Enter your email address:</label>
+                    <input 
+                        type="email" 
+                        id="email-input" 
+                        name="email" 
+                        placeholder="your@email.com"
+                        required
+                        autocomplete="email"
+                    >
+                    <button type="submit" id="check-button">Check Email</button>
+                </div>
+            </form>
+
+            <div id="loading" class="loading hidden">
+                <div class="spinner"></div>
+                <p>Checking your email...</p>
+            </div>
+
+            <div id="result" class="result hidden">
+                <div id="result-content"></div>
+                <button id="check-another" class="secondary-button">Check Another Email</button>
+            </div>
+        </main>
+
+        <footer>
+            <div class="info">
+                <h3>How it works</h3>
+                <ul>
+                    <li>Your email is securely hashed before checking</li>
+                    <li>We check against a database of known compromised emails</li>
+                    <li>Your actual email address is never stored</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
