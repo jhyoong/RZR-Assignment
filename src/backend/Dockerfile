@@ -17,7 +17,7 @@ RUN go mod download
 COPY ./backend/ .
 
 # Build the application
-RUN CGO_ENABLED=1 GOOS=linux go build -a -ldflags '-linkmode external -extldflags "-static"' -o breach-checker-app .
+RUN CGO_ENABLED=1 GOOS=linux go build -a -ldflags '-linkmode external -extldflags "-static"' -o email-checker-app .
 
 # Final stage
 FROM alpine:latest
@@ -29,7 +29,7 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 
 # Copy the binary from builder
-COPY --from=builder /app/breach-checker-app .
+COPY --from=builder /app/email-checker-app .
 
 # Copy frontend files
 COPY ./frontend ./frontend
@@ -42,7 +42,7 @@ EXPOSE 8082
 
 # Set environment variables
 ENV PORT=8082
-ENV DB_PATH=/data/breach_checker.db
+ENV DB_PATH=/data/email_checker.db
 
 # Run the application
-CMD ["./breach-checker-app"]
+CMD ["./email-checker-app"]

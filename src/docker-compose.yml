@@ -7,7 +7,11 @@ services:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./frontend:/usr/share/nginx/html:ro
     depends_on:
-      breach-checker-app:
+      email-checker-app-1:
+        condition: service_healthy
+      email-checker-app-2:
+        condition: service_healthy
+      email-checker-app-3:
         condition: service_healthy
     restart: unless-stopped
     healthcheck:
@@ -17,17 +21,17 @@ services:
       retries: 3
       start_period: 10s
 
-  breach-checker-app:
+  email-checker-app-1:
     build:
       context: .
       dockerfile: ./backend/Dockerfile
     expose:
       - "8082"
     volumes:
-      - breach_data:/data
+      - email_data:/data
     environment:
       - PORT=8082
-      - DB_PATH=/data/breach_checker.db
+      - DB_PATH=/data/email_checker.db
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8082/api/health"]
@@ -36,6 +40,44 @@ services:
       retries: 3
       start_period: 40s
 
+  email-checker-app-2:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    expose:
+      - "8083"
+    volumes:
+      - email_data:/data
+    environment:
+      - PORT=8083
+      - DB_PATH=/data/email_checker.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8083/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  email-checker-app-3:
+    build:
+      context: .
+      dockerfile: ./backend/Dockerfile
+    expose:
+      - "8084"
+    volumes:
+      - email_data:/data
+    environment:
+      - PORT=8084
+      - DB_PATH=/data/email_checker.db
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8084/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
 volumes:
-  breach_data:
+  email_data:
     driver: local

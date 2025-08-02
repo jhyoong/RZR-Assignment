@@ -3,6 +3,7 @@ package database
 import (
 	"database/sql"
 	"log"
+	"time"
 
 	_ "github.com/mattn/go-sqlite3"
 )
@@ -17,7 +18,10 @@ CREATE TABLE IF NOT EXISTS compromised_emails (
 `
 
 func InitDatabase(dbPath string) (*sql.DB, error) {
-	db, err := sql.Open("sqlite3", dbPath)
+	// Enable WAL mode and other optimizations for concurrent access
+	dsn := dbPath + "?_journal_mode=WAL&_synchronous=NORMAL&_cache_size=1000&_foreign_keys=true"
+	
+	db, err := sql.Open("sqlite3", dsn)
 	if err != nil {
 		return nil, err
 	}
@@ -26,10 +30,15 @@ func InitDatabase(dbPath string) (*sql.DB, error) {
 		return nil, err
 	}
 
+	// Set connection pool settings for better concurrency
+	db.SetMaxOpenConns(25)
+	db.SetMaxIdleConns(5)
+	db.SetConnMaxLifetime(5 * time.Minute)
+
 	if _, err := db.Exec(createTableQuery); err != nil {
 		return nil, err
 	}
 
-	log.Println("Database initialized successfully")
+	log.Println("Database initialized successfully with WAL mode")
 	return db, nil
 }

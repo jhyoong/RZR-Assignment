@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 	"time"
 
 	"src/cache"
@@ -28,7 +29,7 @@ func main() {
 }
 
 func (app *App) Initialize() {
-	dbPath := getEnv("DB_PATH", "breach_checker.db")
+	dbPath := getEnv("DB_PATH", "email_checker.db")
 	
 	db, err := database.InitDatabase(dbPath)
 	if err != nil {
@@ -63,9 +64,35 @@ func (app *App) setupRoutes() {
 
 func corsMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
+		// Allow specific domains including Cloudflare tunnel
+		allowedOrigins := []string{
+			"http://localhost",
+			"http://localhost:80",
+			"https://*.yoongjiahui.com",
+			"https://razerassignment.yoongjiahui.com",
+		}
+		
+		origin := r.Header.Get("Origin")
+		host := r.Header.Get("Host")
+		
+		// Allow requests from tunnel domains
+		if origin != "" {
+			for _, allowed := range allowedOrigins {
+				if origin == allowed || 
+				   (strings.Contains(allowed, "*.yoongjiahui.com") && strings.HasSuffix(origin, ".yoongjiahui.com")) {
+					w.Header().Set("Access-Control-Allow-Origin", origin)
+					break
+				}
+			}
+		} else if host != "" && strings.HasSuffix(host, ".yoongjiahui.com") {
+			w.Header().Set("Access-Control-Allow-Origin", "https://"+host)
+		} else {
+			w.Header().Set("Access-Control-Allow-Origin", "*")
+		}
+		
 		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Real-IP, X-Forwarded-For")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Real-IP, X-Forwarded-For, CF-Connecting-IP, CF-Ray, CF-Visitor")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
 		
 		if r.Method == "OPTIONS" {
 			w.WriteHeader(http.StatusOK)

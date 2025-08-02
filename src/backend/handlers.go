@@ -38,7 +38,7 @@ func (app *App) healthHandler(w http.ResponseWriter, r *http.Request) {
 
 	response := HealthResponse{
 		Status:  "healthy",
-		Message: "Breach checker API is running with " + strconv.Itoa(count) + " compromised emails in database",
+		Message: "Email checker API is running with " + strconv.Itoa(count) + " compromised emails in database",
 	}
 
 	json.NewEncoder(w).Encode(response)
