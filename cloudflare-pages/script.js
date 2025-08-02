@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const TARGET_DATE = '2025-08-15 23:59:59'; // To update
+    const TARGET_DATE = '2025-08-02 23:59:59'; // To update
     
     // Elements
     const daysElement = document.getElementById('days');
@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         console.log('User accessed email checker tool');
+        // Note: Link now goes to razerassignmentapp.yoongjiahui.com
     });
     
     // Initialize countdown

@@ -80,6 +80,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 			"http://localhost",
 			"http://localhost:80",
 			"https://*.yoongjiahui.com",
+			"https://razerassignmentapp.yoongjiahui.com",
 			"https://razerassignment.yoongjiahui.com",
 		}
 		
