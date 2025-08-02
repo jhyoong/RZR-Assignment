@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const targetDateElement = document.getElementById('target-date');
     const accessButton = document.getElementById('access-button');
     
+    // Check tunnel status on page load
+    checkTunnelStatus();
+    
     // Convert target date string to Date object
     const targetDate = new Date(TARGET_DATE);
     
@@ -143,4 +146,49 @@ document.addEventListener('DOMContentLoaded', function() {
             updateCountdown();
         }
     });
+    
+    // Function to check if the tunnel/main application is running
+    function checkTunnelStatus() {
+        const TUNNEL_HEALTH_URL = 'https://razerassignmentapp.yoongjiahui.com/api/health';
+        const TIMEOUT_MS = 8000; // 8 second timeout
+        
+        // Create abort controller for timeout
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+        
+        fetch(TUNNEL_HEALTH_URL, {
+            method: 'GET',
+            signal: controller.signal,
+            headers: {
+                'Accept': 'application/json',
+            }
+        })
+        .then(response => {
+            clearTimeout(timeoutId);
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Tunnel is up and running - continue normal operation
+            console.log('Tunnel status check: Online', data);
+        })
+        .catch(error => {
+            // Tunnel is down or unreachable - show unavailable message
+            console.log('Tunnel status check: Offline', error.message);
+            showUnavailableMessage();
+        });
+    }
+    
+    // Function to show unavailable message when tunnel is down
+    function showUnavailableMessage() {
+        const accessSection = document.querySelector('.access-section');
+        if (accessSection) {
+            accessSection.innerHTML = `
+                <h3>Demo Unavailable</h3>
+                <p>Demo is unavailable, please contact me at <a href="mailto:hello@yoongjiahui.com">hello@yoongjiahui.com</a></p>
+            `;
+        }
+    }
 });

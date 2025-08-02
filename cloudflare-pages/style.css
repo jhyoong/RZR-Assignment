@@ -7,8 +7,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #e0e0e0;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0d2818 100%);
     min-height: 100vh;
 }
 
@@ -39,10 +39,11 @@ header p {
 }
 
 main {
-    background: white;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(68, 214, 44, 0.2);
     border-radius: 12px;
     padding: 3rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     margin-bottom: 2rem;
 }
 
@@ -53,7 +54,7 @@ main {
 
 .countdown-section h2 {
     font-size: 2.5rem;
-    color: #333;
+    color: #e0e0e0;
     margin-bottom: 2rem;
     font-weight: 600;
 }
@@ -70,11 +71,11 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #44D62C 0%, #36a823 100%);
     color: white;
     padding: 1.5rem;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+    box-shadow: 0 5px 15px rgba(68, 214, 44, 0.2);
     min-width: 100px;
 }
 
@@ -94,7 +95,7 @@ main {
 
 .countdown-message {
     font-size: 1.1rem;
-    color: #666;
+    color: #b0b0b0;
     margin-bottom: 1rem;
 }
 
@@ -105,26 +106,26 @@ main {
 
 #target-date {
     font-weight: 600;
-    color: #667eea;
+    color: #44D62C;
 }
 
 .access-section {
     text-align: center;
     padding: 2rem 0;
-    border-top: 1px solid #e1e1e1;
-    border-bottom: 1px solid #e1e1e1;
+    border-top: 1px solid rgba(68, 214, 44, 0.2);
+    border-bottom: 1px solid rgba(68, 214, 44, 0.2);
     margin: 2rem 0;
 }
 
 .access-section h3 {
     font-size: 1.8rem;
-    color: #333;
+    color: #e0e0e0;
     margin-bottom: 1rem;
 }
 
 .access-section p {
     font-size: 1.1rem;
-    color: #666;
+    color: #b0b0b0;
     margin-bottom: 2rem;
     max-width: 500px;
     margin-left: auto;
@@ -134,7 +135,7 @@ main {
 .access-button {
     display: inline-block;
     padding: 1.2rem 2.5rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #44D62C 0%, #36a823 100%);
     color: white;
     text-decoration: none;
     border-radius: 8px;
@@ -147,7 +148,7 @@ main {
 
 .access-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 8px 25px rgba(68, 214, 44, 0.3);
 }
 
 .access-button:active {
@@ -167,7 +168,7 @@ main {
 
 .info-section h3 {
     font-size: 1.5rem;
-    color: #333;
+    color: #e0e0e0;
     margin-bottom: 1rem;
     text-align: center;
 }
@@ -181,15 +182,15 @@ main {
 .info-section li {
     padding: 0.8rem 0;
     font-size: 1rem;
-    color: #555;
-    border-bottom: 1px solid #f0f0f0;
+    color: #b0b0b0;
+    border-bottom: 1px solid rgba(68, 214, 44, 0.1);
     display: flex;
     align-items: center;
 }
 
 .info-section li:before {
     content: "✓";
-    color: #667eea;
+    color: #44D62C;
     font-weight: bold;
     margin-right: 1rem;
     font-size: 1.2rem;
