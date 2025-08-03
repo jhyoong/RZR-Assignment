@@ -7,17 +7,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultContent = document.getElementById('result-content');
     const checkAnotherButton = document.getElementById('check-another');
 
-    // Automatically detect base path and set API URL
-    function getBasePath() {
-        const path = window.location.pathname;
-        if (path.startsWith('/checkemail')) {
-            return '/checkemail/api';
-        }
-        return '/api'; // fallback for backward compatibility
-    }
-    
-    const API_BASE_URL = getBasePath();
-    console.log('Detected API Base URL:', API_BASE_URL);
+    // API URL - served from app subdomain
+    const API_BASE_URL = '/api';
 
     // Email validation regex
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -65,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function checkEmail(email) {
         showLoading();
+        console.log('Inspecting logs? Check out my LinkedIn as well: https://www.linkedin.com/in/yoongjh/');
 
         try {
             const response = await fetch(`${API_BASE_URL}/check-email`, {

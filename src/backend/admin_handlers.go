@@ -9,13 +9,13 @@ import (
 )
 
 type AdminStatusResponse struct {
-	Service        string            `json:"service"`
-	Version        string            `json:"version"`
-	Uptime         string            `json:"uptime"`
-	DatabaseStats  DatabaseStats     `json:"database_stats"`
-	CacheStats     CacheStats        `json:"cache_stats"`
-	SystemStats    SystemStats       `json:"system_stats"`
-	SecurityEvents []SecurityEvent   `json:"recent_security_events"`
+	Service        string          `json:"service"`
+	Version        string          `json:"version"`
+	Uptime         string          `json:"uptime"`
+	DatabaseStats  DatabaseStats   `json:"database_stats"`
+	CacheStats     CacheStats      `json:"cache_stats"`
+	SystemStats    SystemStats     `json:"system_stats"`
+	SecurityEvents []SecurityEvent `json:"recent_security_events"`
 }
 
 type DatabaseStats struct {
@@ -25,9 +25,9 @@ type DatabaseStats struct {
 }
 
 type CacheStats struct {
-	Size      int    `json:"current_size"`
-	TTL       string `json:"ttl"`
-	HitRatio  string `json:"hit_ratio_estimate"`
+	Size     int    `json:"current_size"`
+	TTL      string `json:"ttl"`
+	HitRatio string `json:"hit_ratio_estimate"`
 }
 
 type SystemStats struct {
@@ -54,18 +54,18 @@ var startTime = time.Now()
 
 func (app *App) adminStatusHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	// Get database stats
 	count, err := app.EmailService.GetCompromisedEmailCount()
 	if err != nil {
 		http.Error(w, "Failed to get database stats", http.StatusInternalServerError)
 		return
 	}
-	
+
 	// Get memory stats
 	var m runtime.MemStats
 	runtime.ReadMemStats(&m)
-	
+
 	response := AdminStatusResponse{
 		Service: "Email Checker API",
 		Version: "1.0.0",
@@ -94,14 +94,14 @@ func (app *App) adminStatusHandler(w http.ResponseWriter, r *http.Request) {
 			},
 		},
 	}
-	
+
 	json.NewEncoder(w).Encode(response)
 }
 
 func (app *App) adminMetricsHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	
-	// Basic metrics - in a real implementation, you'd track these
+
+	// Basic metrics
 	response := AdminMetricsResponse{
 		RequestsTotal: 0, // Would be tracked in middleware
 		RequestsByEndpoint: map[string]int64{
@@ -120,6 +120,6 @@ func (app *App) adminMetricsHandler(w http.ResponseWriter, r *http.Request) {
 			"/admin/status":    "0%",
 		},
 	}
-	
+
 	json.NewEncoder(w).Encode(response)
 }

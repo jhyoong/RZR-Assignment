@@ -7,8 +7,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #e0e0e0;
+    background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #0d2818 100%);
     min-height: 100vh;
 }
 
@@ -27,6 +27,7 @@ header {
 header h1 {
     font-size: 3rem;
     font-weight: 700;
+    color: #b0b0b0;
     margin-bottom: 0.5rem;
     text-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
@@ -39,10 +40,11 @@ header p {
 }
 
 main {
-    background: white;
+    background: rgba(20, 20, 20, 0.9);
+    border: 1px solid rgba(68, 214, 44, 0.2);
     border-radius: 12px;
     padding: 2.5rem;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     margin-bottom: 2rem;
 }
 
@@ -61,27 +63,33 @@ main {
 label {
     font-size: 1.1rem;
     font-weight: 600;
-    color: #555;
+    color: #b0b0b0;
     text-align: left;
 }
 
 input[type="email"] {
     padding: 1rem;
-    border: 2px solid #e1e1e1;
+    border: 2px solid rgba(68, 214, 44, 0.3);
     border-radius: 8px;
     font-size: 1rem;
+    background: rgba(30, 30, 30, 0.8);
+    color: #e0e0e0;
     transition: all 0.3s ease;
     outline: none;
 }
 
 input[type="email"]:focus {
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #44D62C;
+    box-shadow: 0 0 0 3px rgba(68, 214, 44, 0.1);
+}
+
+input[type="email"]::placeholder {
+    color: #707070;
 }
 
 button {
     padding: 1rem 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #44D62C 0%, #36a823 100%);
     color: white;
     border: none;
     border-radius: 8px;
@@ -94,7 +102,7 @@ button {
 
 button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 5px 15px rgba(68, 214, 44, 0.3);
 }
 
 button:active {
@@ -120,7 +128,7 @@ button:active {
     width: 40px;
     height: 40px;
     border: 4px solid #f3f3f3;
-    border-top: 4px solid #667eea;
+    border-top: 4px solid #44D62C;
     border-radius: 50%;
     animation: spin 1s linear infinite;
     margin: 0 auto 1rem;
@@ -172,16 +180,22 @@ button:active {
 }
 
 footer {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(20, 20, 20, 0.7);
+    border: 1px solid rgba(68, 214, 44, 0.2);
     border-radius: 12px;
     padding: 2rem;
-    color: white;
+    color: #e0e0e0;
     backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
 }
 
 .info h3 {
     margin-bottom: 1rem;
     font-size: 1.2rem;
+    color: #e0e0e0;
 }
 
 .info ul {
@@ -198,8 +212,46 @@ footer {
     content: "✓";
     position: absolute;
     left: 0;
-    color: #4CAF50;
+    color: #44D62C;
     font-weight: bold;
+}
+
+.github-link {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.github-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #44D62C 0%, #36a823 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.github-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(68, 214, 44, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+.github-button:active {
+    transform: translateY(0);
+}
+
+.github-button svg {
+    width: 20px;
+    height: 20px;
 }
 
 @media (max-width: 768px) {
@@ -221,5 +273,15 @@ footer {
     
     input[type="email"], button {
         padding: 0.8rem;
+    }
+    
+    footer {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .github-link {
+        justify-content: center;
+        margin-top: 0;
     }
 }
