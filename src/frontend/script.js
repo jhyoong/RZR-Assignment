@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultContent = document.getElementById('result-content');
     const checkAnotherButton = document.getElementById('check-another');
 
-    // API URL - now served from app subdomain without /checkemail prefix
+    // API URL - served from app subdomain
     const API_BASE_URL = '/api';
 
     // Email validation regex
@@ -56,6 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     async function checkEmail(email) {
         showLoading();
+        console.log('Inspecting logs? Check out my LinkedIn as well: https://www.linkedin.com/in/yoongjh/');
 
         try {
             const response = await fetch(`${API_BASE_URL}/check-email`, {

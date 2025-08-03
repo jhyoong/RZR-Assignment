@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const TARGET_DATE = '2025-08-02 23:59:59'; // To update
+    const TARGET_DATE = '2025-08-03 23:59:59'; // To update
     
     // Elements
     const daysElement = document.getElementById('days');
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         console.log('User accessed email checker tool');
-        // Note: Link now goes to razerassignmentapp.yoongjiahui.com
+        // Note: Link goes to razerassignmentapp.yoongjiahui.com
     });
     
     // Initialize countdown
@@ -155,6 +155,10 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create abort controller for timeout
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+        // LinkedIn Plug
+        console.log('Here is my LinkedIn: https://www.linkedin.com/in/yoongjh/');
+        console.log('Want to see the code? Drop me an email at hello@yoongjiahui.com');
         
         fetch(TUNNEL_HEALTH_URL, {
             method: 'GET',
