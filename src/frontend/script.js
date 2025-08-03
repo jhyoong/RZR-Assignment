@@ -101,13 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p><strong>${data.email}</strong></p>
                 <p>${data.message}</p>
                 <div style="margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 6px;">
-                    <strong>What should you do?</strong>
-                    <ul style="text-align: left; margin-top: 0.5rem;">
-                        <li>Change your password immediately</li>
-                        <li>Enable two-factor authentication</li>
-                        <li>Check for suspicious account activity</li>
-                        <li>Consider using a password manager</li>
-                    </ul>
+                    <strong>You should probably change your password and enable 2FA.</strong>
                 </div>
             `;
         } else {
@@ -117,13 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <p><strong>${data.email}</strong></p>
                 <p>${data.message}</p>
                 <div style="margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.1); border-radius: 6px;">
-                    <strong>Stay safe:</strong>
-                    <ul style="text-align: left; margin-top: 0.5rem;">
-                        <li>Use strong, unique passwords</li>
-                        <li>Enable two-factor authentication</li>
-                        <li>Keep your software updated</li>
-                        <li>Be cautious with suspicious emails</li>
-                    </ul>
+                    <strong>Stay safe. Don't trust sites like this one.</strong>
                 </div>
             `;
         }
