@@ -186,6 +186,10 @@ footer {
     padding: 2rem;
     color: #e0e0e0;
     backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 2rem;
 }
 
 .info h3 {
@@ -212,6 +216,44 @@ footer {
     font-weight: bold;
 }
 
+.github-link {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.github-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background: linear-gradient(135deg, #44D62C 0%, #36a823 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    outline: none;
+}
+
+.github-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(68, 214, 44, 0.3);
+    text-decoration: none;
+    color: white;
+}
+
+.github-button:active {
+    transform: translateY(0);
+}
+
+.github-button svg {
+    width: 20px;
+    height: 20px;
+}
+
 @media (max-width: 768px) {
     .container {
         padding: 1rem;
@@ -231,5 +273,15 @@ footer {
     
     input[type="email"], button {
         padding: 0.8rem;
+    }
+    
+    footer {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .github-link {
+        justify-content: center;
+        margin-top: 0;
     }
 }
