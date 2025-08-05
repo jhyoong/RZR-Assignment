@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const TARGET_DATE = '2025-08-03 23:59:59'; // To update
+    const TARGET_DATE = '2025-08-15 23:59:59'; // To update
     
     // Elements
     const daysElement = document.getElementById('days');
@@ -94,8 +94,8 @@ document.addEventListener('DOMContentLoaded', function() {
         expiredDiv.className = 'expired-message';
         expiredDiv.innerHTML = `
             <h3>Demo Period Ended</h3>
-            <p>The demonstration period for this Razer Assignment has concluded. 
-            The email checker tool is no longer accessible through the tunnel.\n
+            <p>The demonstration period for this Razer Assignment has ended. 
+            The email checker web app is no longer accessible.\n
             Please contact me if this needs to be extended.</p>
             <p>Thank you for reviewing this technical demonstration.</p>
         `;
@@ -189,9 +189,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function showUnavailableMessage() {
         const accessSection = document.querySelector('.access-section');
         if (accessSection) {
+            // Check if demo has expired - expired message takes priority
+            const now = new Date().getTime();
+            const timeRemaining = targetDate.getTime() - now;
+            
+            if (timeRemaining <= 0) {
+                // Demo expired - don't overwrite the expired message
+                return;
+            }
+            
             accessSection.innerHTML = `
-                <h3>Demo Unavailable</h3>
-                <p>Demo is unavailable, please contact me at <a href="mailto:hello@yoongjiahui.com">hello@yoongjiahui.com</a></p>
+                <h3>Demo closed</h3>
+                <p>Demo is closed, please contact me at <a href="mailto:hello@yoongjiahui.com">hello@yoongjiahui.com</a></p>
             `;
         }
     }

@@ -18,7 +18,7 @@ func SeedDatabase(service *EmailService) error {
 	for _, email := range testEmails {
 		emailHash := hashEmail(email)
 		breachDate := time.Now().AddDate(0, 0, -30) // 30 days ago
-		
+
 		err := service.AddCompromisedEmail(emailHash, breachDate)
 		if err != nil {
 			return fmt.Errorf("failed to add %s: %w", email, err)

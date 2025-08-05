@@ -18,9 +18,9 @@ type CheckEmailRequest struct {
 }
 
 type CheckEmailResponse struct {
-	Email        string `json:"email"`
-	Compromised  bool   `json:"compromised"`
-	Message      string `json:"message"`
+	Email       string `json:"email"`
+	Compromised bool   `json:"compromised"`
+	Message     string `json:"message"`
 }
 
 type ErrorResponse struct {
@@ -29,7 +29,7 @@ type ErrorResponse struct {
 
 func (app *App) healthHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	
+
 	count, err := app.EmailService.GetCompromisedEmailCount()
 	if err != nil {
 		http.Error(w, "Database connection failed", http.StatusInternalServerError)

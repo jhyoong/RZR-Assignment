@@ -67,3 +67,7 @@ curl -u admin:your-admin-password http://localhost/admin/metrics
 **Port 80 already in use**: If you get port conflicts, stop any web servers using port 80 or modify the docker-compose.yml port mapping to `"8080:80"` and access via http://localhost:8080/
 
 For detailed testing and troubleshooting, see [TESTING_GUIDE.md](TESTING_GUIDE.md)
+
+## Security
+
+There are some changes that can be made to further improve security, but I won't be adding them in here yet. We can discuss those during the interview :)
