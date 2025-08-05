@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS compromised_emails (
 func InitDatabase(dbPath string) (*sql.DB, error) {
 	// Enable WAL mode and other optimizations for concurrent access
 	dsn := dbPath + "?_journal_mode=WAL&_synchronous=NORMAL&_cache_size=1000&_foreign_keys=true"
-	
+
 	db, err := sql.Open("sqlite3", dsn)
 	if err != nil {
 		return nil, err
